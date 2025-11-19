@@ -16,7 +16,7 @@ actionDim = env.action_space.n
 # -----------------------------
 # Q-Network
 # -----------------------------
-class DQNCartPole(nn.Module):
+class DQNLunarLander(nn.Module):
     def __init__(self, stateDim, actionDim):
         super().__init__()
         self.model = nn.Sequential(
@@ -49,8 +49,8 @@ DEVICE = torch.device("cpu")
 # -----------------------------
 # Networks / Optimizer / Loss
 # -----------------------------
-qNet = DQNCartPole(stateDim=stateDim, actionDim=actionDim).to(DEVICE)
-targetNet = DQNCartPole(stateDim=stateDim, actionDim=actionDim).to(DEVICE)
+qNet = DQNLunarLander(stateDim=stateDim, actionDim=actionDim).to(DEVICE)
+targetNet = DQNLunarLander(stateDim=stateDim, actionDim=actionDim).to(DEVICE)
 targetNet.load_state_dict(qNet.state_dict())
 targetNet.eval()
 
